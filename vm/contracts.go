@@ -25,7 +25,6 @@ import (
 
 	"github.com/artela-network/aspect-core/types"
 	coretypes "github.com/artela-network/aspect-core/types"
-	"github.com/crate-crypto/go-ipa/bandersnatch/fr"
 	"github.com/holiman/uint256"
 
 	"github.com/consensys/gnark-crypto/ecc"
@@ -990,7 +989,7 @@ func decodeBLS12381FieldElement(in []byte) (fp.Element, error) {
 	// check top bytes
 	for i := 0; i < 16; i++ {
 		if in[i] != byte(0x00) {
-			return nil, errBLS12381InvalidFieldElementTopBytes
+			return fp.Element{}, errBLS12381InvalidFieldElementTopBytes
 		}
 	}
 	var res [48]byte
